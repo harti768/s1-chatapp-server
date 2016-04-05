@@ -24,7 +24,9 @@
   },
   "homepage": "https://github.com/Kabelskevalley/s1-chatapp-server#readme",
   "dependencies": {
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "jsonfile": "^2.2.3",
     "socket.io": "^1.4.5"
   }
 }
