@@ -3,8 +3,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var jsonfile = require('jsonfile');
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 app.get('/', function(req, res){
-    res.sendFile(__dirname + '/views/index.html');
+    res.render('chat', { title: 'stroke! Chat' })
 });
 
 app.get('/channels', function(req, res){
