@@ -1,0 +1,17 @@
+extends ./layout.pug
+
+block title
+    title Stroke! chat
+
+block styles
+    link(rel='stylesheet', href='/css/chat.css')
+
+block content
+    ul.pages
+        li.chat.page
+            .chatArea
+                ul.messages
+            input.inputMessage(placeholder='Type here...')
+
+block scripts
+    script(src='/js/chat.js')

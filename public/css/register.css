@@ -1,0 +1,40 @@
+.register.page .form {
+    height: 300px;
+    margin-top: -300px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+.register.page .title {
+    font-size: 200%;
+    margin-bottom: 30px;
+}
+
+.register.page .form input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    outline: none;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 400px;
+}
+
+.register.page input {
+    font-size: 200%;
+    letter-spacing: 3px;
+}
+
+.register.page .title, .login.page input {
+    color: #000;
+    font-weight: 100;
+}
+
+.register.page .form .btn {
+    font-size: 200%;
+    margin-top: 30px;
+    border-radius: 0;
+    width: 400px;
+}

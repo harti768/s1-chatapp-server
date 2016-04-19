@@ -1,0 +1,22 @@
+extends ./layout.pug
+
+block title
+    title Stroke! chat
+
+block styles
+    link(rel='stylesheet', href='/css/register.css')
+
+block content
+    ul.pages
+        li.register.page
+            form.form(action='/register', method='post')
+                h3.title Neues Konto anlegen
+                input(type='text', name='username', placeholder='Username', maxlength='14')
+                br
+                input(type='password', name='password', placeholder='Password', maxlength='14')
+                br
+                input(type='text', name='name', placeholder='Name')
+                br
+                input(type='text', name='thumbnail', placeholder='Profilbild')
+                br
+                button.btn.btn-primary Erstellen

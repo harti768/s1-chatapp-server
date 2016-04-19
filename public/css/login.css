@@ -1,0 +1,33 @@
+.login.page .form {
+    height: 100px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}
+
+.login.page .title {
+    font-size: 200%;
+    margin-bottom: 30px;
+}
+
+.login.page .form input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #bbb;
+    outline: none;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 400px;
+}
+
+.login.page input {
+    font-size: 200%;
+    letter-spacing: 3px;
+}
+
+.login.page .title, .login.page input {
+    color: #000;
+    font-weight: 100;
+}

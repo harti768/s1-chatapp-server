@@ -1,64 +1,31 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var jsonfile = require('jsonfile');
+var io = require('socket.io')(http)
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+// config
+app.set('views', 'views');
+app.set('view engine', 'pug');
 
-app.get('/', function(req, res){
-    res.render('chat', { title: 'stroke! Chat' })
-});
+// middlewares
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
-app.get('/channels', function(req, res){
-    var file = 'db/channels.json';
-    res.send(jsonfile.readFileSync(file));
-});
+// database
+mongoose.connect('mongodb://localhost/stroke');
+app.locals.db = mongoose;
 
-app.get('/login', function(req, res){
-    try {
-        // TODO this is a highly experimental login it should never reach production in this state
-        var user = require('./lib/login')
-            .login(req.query.username, req.query.password);
+// routes
+app.use('/', require('./routes/app'));
+app.use('/api', require('./routes/api'));
 
-        res.send({
-            token: user.token,
-            name: user.name,
-            thumbnail: user.thumbnail
-        });
-    } catch(e){
-        res.status(401).send({ error: 'invalid credentials' });
-    }
-});
-
-app.get('/auth', function(req, res){
-    try {
-        // TODO this is a highly experimental login it should never reach production in this state
-        var user = require('./lib/login')
-            .authorize(req.query.token);
-
-        res.send({
-            name: user.name,
-            thumbnail: user.thumbnail
-        });
-    } catch(e){
-        res.status(401).send({ error: 'invalid token' });
-    }
-});
-
-io.on('connection', function(socket){
-    // connect
-
-    socket.on('chat message', function(msg){
-        // message emit
-
-        io.emit('chat message', msg);
-    });
-
-    socket.on('disconnect', function(){
-        // disconnect
-    });
-});
+// bootstrap
+require('./lib/chat')(io);
 
 http.listen(3000, function(){
     console.log('stroke serving on *:3000');

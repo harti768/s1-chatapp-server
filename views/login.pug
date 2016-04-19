@@ -1,0 +1,19 @@
+extends ./layout.pug
+
+block title
+    title Stroke! chat
+
+block styles
+    link(rel='stylesheet', href='/css/login.css')
+
+block content
+    ul.pages
+        li.login.page
+            .form
+                h3.title Wie lauten deine Benutzerdaten?
+                input.usernameInput(type='text', placeholder='Username', maxlength='14')
+                br
+                input.passwordInput(type='password', placeholder='Password', maxlength='14')
+
+block scripts
+    script(src='/js/login.js')
